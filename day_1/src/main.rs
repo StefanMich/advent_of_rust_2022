@@ -1,3 +1,5 @@
+use std::cmp::Reverse;
+
 pub fn main() {
     let lines = include_str!("../input.txt")
         .lines();
@@ -15,8 +17,14 @@ pub fn main() {
     }
     inventories.push(current_elf_inventory);
 
-    let inventory_totals = inventories.iter().map(|inventory| inventory.iter().sum::<u32>()).collect::<Vec<u32>>();
+    let mut inventory_totals = inventories.iter().map(|inventory| inventory.iter().sum::<u32>()).collect::<Vec<u32>>();
 
     println!("{:#?}", inventory_totals);
     println!("{:#?}", inventory_totals.iter().max());
+
+
+    // part 2
+    inventory_totals.sort_by_key(|x| Reverse(*x));
+    let sum_of_top_3 = inventory_totals.iter().take(3).sum::<u32>();
+    println!("Sum of top 3: {}", sum_of_top_3);
 }
