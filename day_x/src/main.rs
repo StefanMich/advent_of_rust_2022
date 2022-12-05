@@ -5,3 +5,15 @@ pub fn main() {
     println!("{:#?}", lines);
 
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_points_per_line() {
+        assert_eq!(calculate_score('A', 'Y'), 8);
+        assert_eq!(calculate_score('B', 'X'), 1);
+        assert_eq!(calculate_score('C', 'Z'), 6);
+    }
+}
